@@ -3,4 +3,4 @@
 skip = .git,package-lock.json,*.css,.codespellrc,*.svg,node_modules,coverage,dist
 check-hidden = true
 # ignore-regex = 
-ignore-words-list = mappin,als
+ignore-words-list = mappin,als,anc
