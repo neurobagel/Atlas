@@ -27,6 +27,7 @@ describe('Neurobagel Portal Entrypoint', () => {
 
     // Open More Info modal
     cy.contains('More Info').click();
+    cy.contains('About this Community').scrollIntoView();
     cy.contains('About this Community').should('be.visible');
     cy.contains('Close').click();
   });
