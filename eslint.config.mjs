@@ -42,6 +42,7 @@ export default tseslint.config(
       ...reactHooksPlugin.configs.recommended.rules,
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       'react/react-in-jsx-scope': 'off',
+      'react/prop-types': 'off',
       'tsdoc/syntax': 'warn',
       /* 
       @typescript-eslint/no-unused-vars is turned off since eslint wasn't picking up on using `_` for unused variables

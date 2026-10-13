@@ -1,6 +1,6 @@
 [codespell]
 # Ref: https://github.com/codespell-project/codespell#using-a-config-file
-skip = .git,package-lock.json,*.css,.codespellrc
+skip = .git,package-lock.json,*.css,.codespellrc,*.svg,node_modules,coverage,dist
 check-hidden = true
 # ignore-regex = 
-# ignore-words-list =
+ignore-words-list = mappin,als,anc

@@ -1,63 +1,73 @@
-import Alert from '@mui/material/Alert';
-import Stack from '@mui/material/Stack';
-import Slider from '@mui/material/Slider';
-import { MyButton } from '~/components/MyButton';
-import reactLogo from '~/assets/react.svg';
-import viteLogo from '~/assets/vite.svg';
-
-import { useBears, useBearActions } from '~/stores/bearstore';
-
-import './App.css';
-
-function BasicAlerts() {
-  return (
-    <Stack sx={{ width: '100%' }} spacing={2}>
-      <Alert severity="error">This is an error alert — check it out!</Alert>
-      <Alert severity="warning">This is a warning alert — check it out!</Alert>
-      <Alert severity="success">This is a success alert — check it out!</Alert>
-    </Stack>
-  );
-}
+import { useState } from 'react';
+import { Navbar } from './components/Navbar';
+import { Hero } from './components/Hero';
+import { CommunityGrid } from './components/CommunityGrid';
+import { NetworkMap } from './components/NetworkMap';
+import { CommunityModal } from './components/CommunityModal';
+import { COMMUNITIES, Community } from './data/communities';
 
 function App() {
-  const bears = useBears();
-  const { increasePopulation, removeAllBears, updateBears } = useBearActions();
+  const [selectedCommunity, setSelectedCommunity] = useState<Community | null>(null);
+  const [hoveredCommunity, setHoveredCommunity] = useState<Community | null>(null);
+  const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'prospective'>('active');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [resetKey, setResetKey] = useState(0);
+
+  const scrollToMap = () => {
+    const el = document.getElementById('map-section');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleReset = () => {
+    setSearchQuery('');
+    setFilterStatus('active');
+    setResetKey((prev) => prev + 1);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <MyButton />
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <div className="card">
-        <h1>Count of bears: {bears}</h1>
-        <button type="button" onClick={() => increasePopulation(1)}>
-          Increase population
-        </button>
-        <button type="button" onClick={() => removeAllBears()}>
-          Remove bears
-        </button>
-        <input onChange={(e) => updateBears(parseInt(e.currentTarget.value, 10))} value={bears} />
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-      <BasicAlerts />
-      <h1 className="bg-red-500 text-3xl font-bold underline">Hello world!</h1>
-      <div>
-        <Slider defaultValue={30} />
-        <Slider defaultValue={30} className="text-orange-600" />
-      </div>
-    </>
+    <div className="flex min-h-screen flex-col bg-slate-50 font-sans text-slate-900 selection:bg-[#7e56c2]/20 selection:text-[#7e56c2]">
+      {/* Global Header */}
+      <Navbar />
+
+      <main className="flex-1">
+        {/* Hero Section */}
+        <Hero onExploreClick={scrollToMap} />
+
+        {/* Global Network Map Section */}
+        <div className="relative mx-auto w-full max-w-[1536px] px-3 pb-12 pt-3 sm:px-6 lg:px-8">
+          {/* Partner & Prospective Community Cells with Unified Controls */}
+          <section id="communities-section">
+            <CommunityGrid
+              communities={COMMUNITIES}
+              hoveredCommunityId={hoveredCommunity?.id}
+              onHoverCommunity={(community) => setHoveredCommunity(community)}
+              onSelectCommunity={(community) => setSelectedCommunity(community)}
+              searchQuery={searchQuery}
+              onSearchQueryChange={setSearchQuery}
+              filterStatus={filterStatus}
+              onFilterStatusChange={setFilterStatus}
+              onReset={handleReset}
+            />
+          </section>
+
+          {/* Global Network Map Section */}
+          <section id="map-section" className="scroll-mt-4 pt-1">
+            <NetworkMap
+              communities={COMMUNITIES}
+              selectedCommunityId={selectedCommunity?.id}
+              hoveredCommunityId={hoveredCommunity?.id}
+              onSelectCommunity={(community) => setSelectedCommunity(community)}
+              searchQuery={searchQuery}
+              filterStatus={filterStatus}
+              resetKey={resetKey}
+            />
+          </section>
+        </div>
+      </main>
+
+      {/* Detail Modal */}
+      <CommunityModal community={selectedCommunity} onClose={() => setSelectedCommunity(null)} />
+    </div>
   );
 }
 

@@ -1,3 +1,74 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Immersive Leaflet styling */
+.leaflet-container {
+  background: transparent !important;
+}
+
+.immersive-map .leaflet-tile-pane {
+  mix-blend-mode: multiply;
+  filter: contrast(1.1) brightness(0.98);
+}
+
+/* Ensure map controls stay crisp and clean */
+.immersive-map .leaflet-control-zoom {
+  border: 1px solid rgba(203, 213, 225, 0.9) !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08) !important;
+}
+.immersive-map .leaflet-control-zoom a {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  color: #334155 !important;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.9) !important;
+}
+.immersive-map .leaflet-control-zoom a:hover {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+/* Map marker radar ping animations */
+@keyframes marker-ping {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  70% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.3);
+    opacity: 0;
+  }
+}
+
+.marker-ping-ring {
+  position: absolute;
+  inset: 4px;
+  border-radius: 9999px;
+  pointer-events: none;
+  animation: marker-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.marker-ping-ring-delayed {
+  position: absolute;
+  inset: 4px;
+  border-radius: 9999px;
+  pointer-events: none;
+  animation: marker-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  animation-delay: 1s;
+}
