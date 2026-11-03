@@ -3,6 +3,7 @@ import enigmaLogo from '~/assets/logos/enigma.png';
 import enigmaAddictionLogo from '~/assets/logos/enigma-addiction.png';
 import neurobagelLogo from '~/assets/logos/neurobagel.png';
 import parkinsonNLLogo from '~/assets/logos/parkinson-nl.svg';
+import scandLogo from '~/assets/logos/scand.jpg';
 import trr379Logo from '~/assets/logos/trr379.png';
 import type { Community, CommunityNode } from './types';
 
@@ -29,7 +30,7 @@ export const COMMUNITIES: Community[] = [
     name: 'SCanD',
     fullName: 'Schizophrenia Canadian Neuroimaging Database',
     status: 'active',
-    // TODO(confirm): official SCanD logo, if any
+    logoUrl: scandLogo,
     contact: { name: 'Erin Dickie' },
     queryToolUrl: 'https://scand.neurobagel.org/?node=All',
     federationApiUrl: 'https://scand.neurobagel.org/federate/',
