@@ -1,5 +1,6 @@
 import asmqLogo from '~/assets/logos/asmq.png';
 import enigmaLogo from '~/assets/logos/enigma.png';
+import enigmaAddictionLogo from '~/assets/logos/enigma-addiction.png';
 import neurobagelLogo from '~/assets/logos/neurobagel.png';
 import parkinsonNLLogo from '~/assets/logos/parkinson-nl.svg';
 import trr379Logo from '~/assets/logos/trr379.png';
@@ -90,7 +91,8 @@ export const COMMUNITIES: Community[] = [
     id: 'enigma-addiction',
     name: 'ENIGMA-Addiction',
     status: 'onboarding',
-    // TODO(confirm): fullName, contact, logo and projectedStats
+    logoUrl: enigmaAddictionLogo,
+    // TODO(confirm): fullName, contact and projectedStats
   },
   {
     id: 'nichy',
