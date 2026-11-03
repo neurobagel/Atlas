@@ -93,7 +93,8 @@ export const COMMUNITIES: Community[] = [
     name: 'ENIGMA-Addiction',
     status: 'onboarding',
     logoUrl: enigmaAddictionLogo,
-    // TODO(confirm): fullName, contact and projectedStats
+    contact: { name: 'Anthony Juliano' },
+    // TODO(confirm): fullName and projectedStats
   },
   {
     id: 'nichy',
