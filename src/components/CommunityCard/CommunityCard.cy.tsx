@@ -219,6 +219,10 @@ describe('CommunityCard', () => {
     cy.mount(
       <CommunityCard community={activeCommunity} nodes={nodes} isSelected onSelect={cy.spy()} />
     );
-    cy.get('[data-cy="community-card-test-active"]').should('have.css', 'border-width', '2px');
+    // Keeps the 1px border so selecting doesn't shift the layout; the highlight is a primary shadow
+    cy.get('[data-cy="community-card-test-active"]').should('have.css', 'border-width', '1px');
+    cy.get('[data-cy="community-card-test-active"]')
+      .should('have.css', 'box-shadow')
+      .and('include', 'rgb(217, 116, 141)');
   });
 });

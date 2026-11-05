@@ -16,15 +16,15 @@ describe('<App />', () => {
     cy.mount(<App />);
     const card = (id: string) => `[data-cy="community-card-${id}"]`;
 
-    // The selected card is the one with the thicker border
+    // The selected card is the one with the highlight shadow
     cy.get(card('neurobagel')).click();
-    cy.get(card('neurobagel')).should('have.css', 'border-width', '2px');
+    cy.get(card('neurobagel')).should('not.have.css', 'box-shadow', 'none');
 
     cy.get(card('scand')).click();
-    cy.get(card('scand')).should('have.css', 'border-width', '2px');
-    cy.get(card('neurobagel')).should('have.css', 'border-width', '1px');
+    cy.get(card('scand')).should('not.have.css', 'box-shadow', 'none');
+    cy.get(card('neurobagel')).should('have.css', 'box-shadow', 'none');
 
     cy.get(card('scand')).click();
-    cy.get(card('scand')).should('have.css', 'border-width', '1px');
+    cy.get(card('scand')).should('have.css', 'box-shadow', 'none');
   });
 });

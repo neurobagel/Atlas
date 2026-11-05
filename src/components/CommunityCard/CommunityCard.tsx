@@ -66,9 +66,12 @@ export function CommunityCard({
       // Styled with sx rather than Tailwind so these reliably override MUI's own border styles
       sx={{
         p: 2,
-        borderWidth: isSelected ? 2 : 1,
         borderStyle: isActive || isSelected ? 'solid' : 'dashed',
         borderColor: isSelected ? 'primary.main' : 'grey.400',
+        // Thickens the selected border with a shadow, since a wider border would shift the layout
+        boxShadow: (theme) => (isSelected ? `0 0 0 1px ${theme.palette.primary.main}` : 'none'),
+        // MUI animates box-shadow by default, which would make the highlight lag behind the click
+        transition: 'none',
         bgcolor: isActive ? 'background.paper' : 'grey.50',
       }}
       data-cy={`community-card-${community.id}`}
