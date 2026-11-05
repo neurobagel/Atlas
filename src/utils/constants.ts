@@ -2,6 +2,7 @@ import asmqLogo from '~/assets/logos/asmq.png';
 import enigmaLogo from '~/assets/logos/enigma.png';
 import enigmaAddictionLogo from '~/assets/logos/enigma-addiction.png';
 import neurobagelLogo from '~/assets/logos/neurobagel.png';
+import nichyLogo from '~/assets/logos/nichy.png';
 import parkinsonNLLogo from '~/assets/logos/parkinson-nl.svg';
 import scandLogo from '~/assets/logos/scand.jpg';
 import trr379Logo from '~/assets/logos/trr379.png';
@@ -102,6 +103,7 @@ export const COMMUNITIES: Community[] = [
     name: 'NICHY',
     fullName: 'NeuroImaging Consortium in Central Disorders of Hypersomnolence (Nichy)',
     status: 'onboarding',
+    logoUrl: nichyLogo,
     contact: { name: 'Ysbrand van der Werf' },
     // TODO(confirm): projectedStats
   },
