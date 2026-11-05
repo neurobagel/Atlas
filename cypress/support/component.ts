@@ -25,7 +25,10 @@ import '@cypress/code-coverage/support';
 // Import styles
 import '../../src/index.css';
 
+import { createElement } from 'react';
+import { ThemeProvider } from '@mui/material/styles';
 import { mount } from 'cypress/react18';
+import NBTheme from '../../src/theme';
 
 // Augment the Cypress namespace to include type definitions for
 // your custom command.
@@ -39,7 +42,10 @@ declare global {
   }
 }
 
-Cypress.Commands.add('mount', mount);
+// Mount inside the app theme so components render with the same palette as in the app
+Cypress.Commands.add('mount', (component, options) =>
+  mount(createElement(ThemeProvider, { theme: NBTheme }, component), options)
+);
 
 // Example use:
 // cy.mount(<MyComponent />)
