@@ -90,17 +90,20 @@ export const COMMUNITIES: Community[] = [
   },
   {
     id: 'enigma-addiction',
-    name: 'ENIGMA-Addiction',
+    name: 'ENIGMA-AD',
+    fullName: 'ENIGMA Addiction',
     status: 'onboarding',
     logoUrl: enigmaAddictionLogo,
     contact: { name: 'Anthony Juliano' },
-    // TODO(confirm): fullName and projectedStats
+    // TODO(confirm): projectedStats
   },
   {
     id: 'nichy',
-    name: 'Nichy',
+    name: 'NICHY',
+    fullName: 'NeuroImaging Consortium in Central Disorders of Hypersomnolence (Nichy)',
     status: 'onboarding',
-    // TODO(confirm): fullName, contact, logo and projectedStats
+    contact: { name: 'Ysbrand van der Werf' },
+    // TODO(confirm): projectedStats
   },
 ];
 

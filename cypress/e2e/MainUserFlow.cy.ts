@@ -3,6 +3,6 @@ describe('Main user flow', () => {
     cy.visit('/');
     cy.get('[data-cy="community-list"]').should('be.visible');
     cy.get('[data-cy="community-card-neurobagel"]').should('contain', 'Neurobagel');
-    cy.get('[data-cy="community-card-nichy"]').should('contain', 'Nichy');
+    cy.get('[data-cy="community-card-nichy"]').should('contain', 'NICHY');
   });
 });
