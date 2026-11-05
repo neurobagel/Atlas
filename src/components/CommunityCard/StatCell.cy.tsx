@@ -13,7 +13,7 @@ describe('StatCell', () => {
     cy.get('[data-cy="stat-cell-subjects-loading"]').should('not.exist');
   });
 
-  it('should show zero rather than treating it as missing', () => {
+  it('should show 0 instead of a dash when the value is zero', () => {
     cy.mount(<StatCell label="Datasets" value={0} status="success" />);
     cy.get('[data-cy="stat-cell-datasets"]').should('contain', '0');
     cy.get('[data-cy="stat-cell-datasets-error"]').should('not.exist');
