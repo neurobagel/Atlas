@@ -83,9 +83,10 @@ export function CommunityCard({
         />
         {nodes.length > 0 && (
           <Button
-            variant="contained"
+            variant="outlined"
             size="small"
             startIcon={isExpanded ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+            sx={{ bgcolor: (theme) => alpha(theme.palette.primary.main, 0.08) }}
             aria-expanded={isExpanded}
             aria-controls={nodeListId}
             onClick={(event) => {
@@ -177,18 +178,14 @@ export function CommunityCard({
 
       {community.status === 'active' && (
         <Button
-          variant="outlined"
+          variant="contained"
           fullWidth
           startIcon={<OpenInNewIcon />}
           href={community.queryToolUrl}
           target="_blank"
           rel="noopener noreferrer"
           onClick={stopPropagation}
-          sx={{
-            mt: 2,
-            fontWeight: 600,
-            bgcolor: (theme) => alpha(theme.palette.primary.main, 0.08),
-          }}
+          sx={{ mt: 2, fontWeight: 600 }}
           data-cy={`community-card-${community.id}-query-button`}
         >
           Query subjects here
