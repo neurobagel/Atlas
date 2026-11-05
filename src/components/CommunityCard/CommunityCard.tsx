@@ -3,7 +3,6 @@ import type { MouseEvent } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
-import CardActionArea from '@mui/material/CardActionArea';
 import Chip from '@mui/material/Chip';
 import Collapse from '@mui/material/Collapse';
 import Typography from '@mui/material/Typography';
@@ -100,11 +99,7 @@ export function CommunityCard({
         )}
       </div>
 
-      <CardActionArea
-        aria-pressed={isSelected}
-        sx={{ display: 'flex', alignItems: 'flex-start', gap: 2, mt: 1.5, borderRadius: 1 }}
-        data-cy={`community-card-${community.id}-select`}
-      >
+      <div className="mt-3 flex items-start gap-4">
         {community.logoUrl ? (
           <img
             src={community.logoUrl}
@@ -155,7 +150,7 @@ export function CommunityCard({
             )}
           </div>
         </div>
-      </CardActionArea>
+      </div>
 
       {nodes.length > 0 && (
         <Collapse in={isExpanded}>

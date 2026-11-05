@@ -14,16 +14,17 @@ describe('<App />', () => {
 
   it('should select one card at a time and deselect on a second click', () => {
     cy.mount(<App />);
-    const select = (id: string) => `[data-cy="community-card-${id}-select"]`;
+    const card = (id: string) => `[data-cy="community-card-${id}"]`;
 
-    cy.get(select('neurobagel')).click();
-    cy.get(select('neurobagel')).should('have.attr', 'aria-pressed', 'true');
+    // The selected card is the one with the thicker border
+    cy.get(card('neurobagel')).click();
+    cy.get(card('neurobagel')).should('have.css', 'border-width', '2px');
 
-    cy.get(select('scand')).click();
-    cy.get(select('scand')).should('have.attr', 'aria-pressed', 'true');
-    cy.get(select('neurobagel')).should('have.attr', 'aria-pressed', 'false');
+    cy.get(card('scand')).click();
+    cy.get(card('scand')).should('have.css', 'border-width', '2px');
+    cy.get(card('neurobagel')).should('have.css', 'border-width', '1px');
 
-    cy.get(select('scand')).click();
-    cy.get(select('scand')).should('have.attr', 'aria-pressed', 'false');
+    cy.get(card('scand')).click();
+    cy.get(card('scand')).should('have.css', 'border-width', '1px');
   });
 });

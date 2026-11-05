@@ -196,23 +196,6 @@ describe('CommunityCard', () => {
     cy.get('@onSelect').should('have.been.calledOnceWith', 'test-active');
   });
 
-  it('should expose selection through a focusable button for keyboard users', () => {
-    // Cypress can't simulate a native Enter keypress on a button, so check it's a real button,
-    // which the browser activates with Enter/Space by dispatching a click that bubbles to the card
-    cy.mount(
-      <CommunityCard
-        community={activeCommunity}
-        nodes={nodes}
-        isSelected={false}
-        onSelect={cy.spy()}
-      />
-    );
-    cy.get('[data-cy="community-card-test-active-select"]')
-      .should('match', 'button')
-      .and('have.attr', 'aria-pressed', 'false')
-      .and('not.have.attr', 'tabindex', '-1');
-  });
-
   it('should not select the card when the inner controls are clicked', () => {
     const onSelect = cy.spy().as('onSelect');
     cy.mount(
@@ -237,10 +220,5 @@ describe('CommunityCard', () => {
       <CommunityCard community={activeCommunity} nodes={nodes} isSelected onSelect={cy.spy()} />
     );
     cy.get('[data-cy="community-card-test-active"]').should('have.css', 'border-width', '2px');
-    cy.get('[data-cy="community-card-test-active-select"]').should(
-      'have.attr',
-      'aria-pressed',
-      'true'
-    );
   });
 });
